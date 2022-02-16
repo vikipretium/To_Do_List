@@ -2,9 +2,9 @@
 
 # Awesome Books Project
 
-> A web app to add your books in a digital shelf. This webapp is built with vanila javascript. A local storage option is added with this project, so that a user can store data in this is web app. 
+> A web app to create a To Do list online. This webapp is built with webpack. A local storage option is added with this project, so that a user can store data in this is web app. 
 
-![screenshot](./assets/images/1.png)
+![screenshot]()
 
 Additional description about the project and its features.
 
@@ -12,12 +12,13 @@ Additional description about the project and its features.
 
 - HTML
 - CSS
-- JS
+- Javascript
 - Git
+- Webpack
 
 ## Live Demo
 
-[Live Demo Link](https://vikipretium.github.io/AwesomeBooks-es6/)
+[Live Demo Link]()
 
 ## Built With
 
@@ -43,7 +44,7 @@ The basic requirements for building the executable are:
 #### Cloning the project
 
 ```
-git clone https://github.com/vikipretium/awesome-books-project.git 
+git clone https://github.com/vikipretium/To_Do_List.git 
 ```
 
 ## Getting packages and debuging with Stylelint
