@@ -12,10 +12,10 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: path.resolve(__dirname, './src/index.html'),
+      template: './src/index.html',
     }),
   ],
+
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -25,6 +25,12 @@ module.exports = {
     rules: [{
       test: /\.css$/i,
       use: ['style-loader', 'css-loader'],
-    }],
+    },
+    {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      type: 'asset/resource',
+    },
+    ],
+
   },
 };
