@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Awesome Books Project
+# To Do List Webapp
 
 > A web app to create a To Do list online. This webapp is built with webpack. A local storage option is added with this project, so that a user can store data in this is web app. 
 
