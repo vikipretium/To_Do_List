@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack serve --open --mode=development",
-    "build": "webpack"
-
+    "build": "webpack",
+    "lint": "npx eslint . --fix; npx stylelint \"**/*.{css,scss}\" --fix; npx hint ."
   },
   "repository": {
     "type": "git",
