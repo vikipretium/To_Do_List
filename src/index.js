@@ -9,25 +9,7 @@ const addButton = document.getElementById('add-button');
 addButton.innerHTML = render;
 
 // list section
-const ListContent = [{
-  id: 0,
-  description: 'task1',
-  status: false,
-},
-{
-  id: 1,
-  description: 'task2',
-  status: false,
-}, {
-  id: 2,
-  description: 'task3',
-  status: false,
-}, {
-  id: 4,
-  description: 'task4',
-  status: false,
-},
-];
+const ListContent = [];
 
 // iteration through array
 for (let i = 0; i < ListContent.length; i += 1) {
