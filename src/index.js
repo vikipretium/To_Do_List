@@ -1,25 +1,67 @@
-import './style.css';
+import "./style.css";
+import menuIcon from "./asset/images/3dots-grey.svg";
+import delIcon from "./asset/images/test1.svg";
 
-// input section
-import Image from './asset/images/add-grey.svg';
-import Image1 from './asset/images/3dots-grey.svg';
+const todoInput = document.querySelector(".todo-input");
+const addButton = document.querySelector(".add-button");
+const todoList = document.querySelector(".ulList");
+const menuButton = document.querySelector(".menu");
 
-const render = `<a href="#"><img src="${Image}" alt="img"></a>`;
-const addButton = document.getElementById('add-button');
-addButton.innerHTML = render;
+addButton.addEventListener("click", addTodo);
 
-// list section
-const ListContent = [];
+let dotImg;
 
-// iteration through array
-for (let i = 0; i < ListContent.length; i += 1) {
-  const ListElement = document.createElement('li');
-  const ListTemplate = `<div class="list-content">
-    <input type="checkbox">
-    <span>${ListContent[i].description}</span>
-    </div>
-    <img src="${Image1}" alt="dots">`;
-  ListElement.innerHTML = ListTemplate;
-  const ListSection = document.getElementById('ulList');
-  ListSection.appendChild(ListElement);
+function addTodo(event) {
+  event.preventDefault();
+
+  //create list
+  const todoLi = document.createElement("li");
+  todoLi.classList.add("todo-item");
+
+  //create div class list-content
+  const listDiv = document.createElement("div");
+  listDiv.classList.add("list-content");
+
+  //create checkbox
+  const checkbox = document.createElement("input");
+  checkbox.setAttribute("type", "checkbox");
+  listDiv.appendChild(checkbox);
+
+  //create span for text
+  const spanText = document.createElement("span");
+  spanText.innerText = todoInput.value;
+  spanText.classList.add("textEdit");
+  listDiv.appendChild(spanText);
+  const todoEdit = listDiv.querySelector(".textEdit");
+  todoEdit.addEventListener("click", editTodo);
+
+  function editTodo(event) {
+    spanText.contentEditable = true;
+  }
+
+  let dotImg = document.createElement("img");
+  dotImg.src = menuIcon;
+  dotImg.classList.add("menu");
+  dotImg.addEventListener("click", menu);
+
+  //appending tags
+  todoLi.appendChild(listDiv);
+  todoLi.appendChild(dotImg);
+  todoList.appendChild(todoLi);
+
+  //clear input
+  todoInput.value = "";
+
+  const menuButton = document.querySelector(".menu");
+  function menu(event) {
+    if (dotImg.src === menuIcon) {
+      dotImg.src = delIcon;
+      dotImg.classList.add("del");
+      document.querySelector(".del").addEventListener("click", delTodo);
+      function delTodo() {
+        this.parentElement.style.display = "none";
+      }
+    }
+  }
 }
+menu.addEventListener("click", menu);
