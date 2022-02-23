@@ -77,6 +77,7 @@ button i {
 #ulList li {
   display: flex;
   padding: 1rem;
+  align-items: center;
 }
 
 .list-content {
@@ -87,8 +88,13 @@ button i {
   flex-basis: 95%;
 }
 
-.list-content span {
+.todo-description {
   flex-basis: 95%;
+  height: 2rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: none;
 }
 
 svg {
