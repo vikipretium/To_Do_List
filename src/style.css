@@ -100,3 +100,19 @@ button i {
 svg {
   fill: #eee;
 }
+
+.strike {
+  text-decoration: line-through;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.disabled .todo-description {
+  pointer-events: none;
+}
+
+.disabled .todo-menu {
+  pointer-events: none;
+}
