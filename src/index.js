@@ -1,66 +1,64 @@
-import "./style.css";
+import './style.css';
 // input section
-import Image from "./asset/images/add-grey.svg";
-import Image1 from "./asset/images/3dots-grey.svg";
-import Image2 from "./asset/images/trash.svg";
+import Image from './asset/images/add-grey.svg';
+import Image1 from './asset/images/3dots-grey.svg';
+import Image2 from './asset/images/trash.svg';
+
 const render = `<a href="#"><img src="${Image}" alt="img"></a>`;
-const addButton = document.getElementById("add-button");
+const addButton = document.getElementById('add-button');
 addButton.innerHTML = render;
 
 // list section
 let ListContent = [];
 
-//functions
-//status checkbox
+// functions
+// status checkbox
 
 const statusCheckBox = (e) => {
   const list = e.target.parentNode.parentNode;
-  list.children[0].children[1].classList.toggle("strike");
-  let completed = !list.classList.contains("disabled");
-  list.classList.toggle("disabled");
-  const getLists = document.querySelector("#ulList").children;
+  list.children[0].children[1].classList.toggle('strike');
+  const completed = !list.classList.contains('disabled');
+  list.classList.toggle('disabled');
+  const getLists = document.querySelector('#ulList').children;
   const index = Array.from(getLists).indexOf(list);
   ListContent[index].completed = completed;
-  localStorage.setItem("tasks", JSON.stringify(ListContent));
+  localStorage.setItem('tasks', JSON.stringify(ListContent));
 };
 
-//sorting index values
+// sorting index values
 const sortIndex = () => {
-  ListContent = ListContent.map((item, index) => {
-    return {
-      index: index + 1,
-      description: item.description,
-      completed: item.completed,
-    };
-  });
-  localStorage.setItem("tasks", JSON.stringify(ListContent));
+  ListContent = ListContent.map((item, index) => ({
+    index: index + 1,
+    description: item.description,
+    completed: item.completed,
+  }));
+  localStorage.setItem('tasks', JSON.stringify(ListContent));
 };
 
-//update local storage
+// update local storage
 const updateLocalStorage = (arr, item) => {
   const index = Array.from(arr).indexOf(item.parentNode.parentNode);
   ListContent[index].description = item.value;
-  localStorage.setItem("tasks", JSON.stringify(ListContent));
+  localStorage.setItem('tasks', JSON.stringify(ListContent));
 };
 
 // input validation
 const isValid = (value) => {
   if (!value) {
     return false;
-  } else {
-    return true;
   }
+  return true;
 };
 
-//after editing todo list - hit enter to save
+// after editing todo list - hit enter to save
 const saveValue = (event) => {
   if (
-    event.target.classList.contains("todo-description") &&
-    event.keyCode === 13
+    event.target.classList.contains('todo-description')
+    && event.keyCode === 13
   ) {
     event.target.disabled = true;
     event.target.parentNode.parentNode.children[1].src = Image1;
-    const todoContent = document.querySelector("#ulList").children;
+    const todoContent = document.querySelector('#ulList').children;
     updateLocalStorage(todoContent, event.target);
     sortIndex();
   }
@@ -70,24 +68,24 @@ const saveValue = (event) => {
 const todoEdit = (event) => {
   if (event.target.src === Image1) {
     event.target.src = Image2;
-    event.target.parentNode.children[0].children[1].removeAttribute("disabled");
+    event.target.parentNode.children[0].children[1].removeAttribute('disabled');
     // document.querySelector(".todo-description").removeAttribute("disabled");
   } else {
-    const lists = document.querySelector("#ulList").children;
+    const lists = document.querySelector('#ulList').children;
     const indexList = Array.from(lists).indexOf(event.target.parentNode);
     ListContent.splice(indexList, 1);
-    localStorage.setItem("tasks", JSON.stringify(ListContent));
+    localStorage.setItem('tasks', JSON.stringify(ListContent));
     event.target.parentNode.remove();
     sortIndex();
   }
 };
 
 // to check key press enter
-document.addEventListener("keypress", saveValue);
+document.addEventListener('keypress', saveValue);
 
-//add function
+// add function
 const addtodo = (event) => {
-  const todoInput = document.querySelector(".todo-input").value;
+  const todoInput = document.querySelector('.todo-input').value;
   const valid = isValid(todoInput); // checking input validation
 
   if (!valid) return;
@@ -98,79 +96,79 @@ const addtodo = (event) => {
     description: todoInput,
     completed: false,
   });
-  const ListElement = document.createElement("li");
+  const ListElement = document.createElement('li');
   ListElement.id = ListContent[index].index;
-  const menuIcon = document.createElement("img");
+  const menuIcon = document.createElement('img');
   menuIcon.src = Image1;
-  menuIcon.alt = "menu";
-  menuIcon.className = "todo-menu";
+  menuIcon.alt = 'menu';
+  menuIcon.className = 'todo-menu';
   const ListTemplate = `<div class="list-content">
     <input type="checkbox" class="checkbox">
     <input type="text" value="${ListContent[index].description}" class="todo-description" disabled>
     </div>`;
 
-  menuIcon.addEventListener("click", todoEdit);
+  menuIcon.addEventListener('click', todoEdit);
   ListElement.innerHTML = ListTemplate;
   ListElement.appendChild(menuIcon);
-  const ListSection = document.getElementById("ulList");
+  const ListSection = document.getElementById('ulList');
   ListSection.appendChild(ListElement);
-  const getCheckBoxes = document.querySelectorAll(".checkbox");
+  const getCheckBoxes = document.querySelectorAll('.checkbox');
   const checkBoxIndex = getCheckBoxes.length - 1;
-  getCheckBoxes[checkBoxIndex].addEventListener("change", statusCheckBox);
-  localStorage.setItem("tasks", JSON.stringify(ListContent));
-  document.querySelector(".todo-input").value = null;
+  getCheckBoxes[checkBoxIndex].addEventListener('change', statusCheckBox);
+  localStorage.setItem('tasks', JSON.stringify(ListContent));
+  document.querySelector('.todo-input').value = null;
 };
 
 // adds the task from input
-addButton.addEventListener("click", addtodo);
+addButton.addEventListener('click', addtodo);
 
-//create list for reloading
+// create list for reloading
 const addingTodos = (task) => {
-  const index = task.index;
+  const { index } = task;
   ListContent.push({
-    index: index,
+    index,
     description: task.description,
     completed: task.completed,
   });
-  const ListElement = document.createElement("li");
+  const ListElement = document.createElement('li');
   ListElement.id = task.index;
-  const menuIcon = document.createElement("img");
+  const menuIcon = document.createElement('img');
   menuIcon.src = Image1;
-  menuIcon.alt = "menu";
-  menuIcon.className = "todo-menu";
+  menuIcon.alt = 'menu';
+  menuIcon.className = 'todo-menu';
   const ListTemplate = `<div class="list-content">
     <input type="checkbox" class="checkbox" >
     <input type="text" value="${task.description}" class="todo-description" disabled>
     </div>`;
 
-  menuIcon.addEventListener("click", todoEdit);
+  menuIcon.addEventListener('click', todoEdit);
   ListElement.innerHTML = ListTemplate;
   ListElement.appendChild(menuIcon);
-  const ListSection = document.getElementById("ulList");
+  const ListSection = document.getElementById('ulList');
   ListSection.appendChild(ListElement);
-  const getCheckBoxes = document.querySelectorAll(".checkbox");
+  const getCheckBoxes = document.querySelectorAll('.checkbox');
   const checkBoxIndex = getCheckBoxes.length - 1;
-  getCheckBoxes[checkBoxIndex].addEventListener("change", statusCheckBox);
+  getCheckBoxes[checkBoxIndex].addEventListener('change', statusCheckBox);
   if (task.completed === true) {
     getCheckBoxes[checkBoxIndex].click();
   }
 };
 
-//show todolist
+// show todolist
 const showTodoList = () => {
-  const grabList = JSON.parse(localStorage.getItem("tasks"));
+  const grabList = JSON.parse(localStorage.getItem('tasks'));
   if (grabList === null) return;
   grabList.forEach((item) => addingTodos(item));
-  localStorage.setItem("tasks", JSON.stringify(ListContent));
+  localStorage.setItem('tasks', JSON.stringify(ListContent));
 };
 
 const clearAll = () => {
-  const disabled = document.querySelectorAll(".disabled");
-  Array.from(disabled).forEach((item, i) => item.remove());
+  const disabled = document.querySelectorAll('.disabled');
+  Array.from(disabled).forEach((item) => item.remove());
   ListContent = ListContent.filter((item) => item.completed === false);
   sortIndex();
 };
 
-document.querySelector("#clear").addEventListener("click", clearAll);
+document.querySelector('#clear').addEventListener('click', clearAll);
 
 showTodoList();
