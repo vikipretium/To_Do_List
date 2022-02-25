@@ -3,6 +3,7 @@ import './style.css';
 import Image from './asset/images/add-grey.svg';
 import Image1 from './asset/images/3dots-grey.svg';
 import Image2 from './asset/images/trash.svg';
+import statusCheckBox from './asset/modules/statusCheck.js';
 
 const render = `<a href="#"><img src="${Image}" alt="img"></a>`;
 const addButton = document.getElementById('add-button');
@@ -12,18 +13,6 @@ addButton.innerHTML = render;
 let ListContent = [];
 
 // functions
-// status checkbox
-
-const statusCheckBox = (e) => {
-  const list = e.target.parentNode.parentNode;
-  list.children[0].children[1].classList.toggle('strike');
-  const completed = !list.classList.contains('disabled');
-  list.classList.toggle('disabled');
-  const getLists = document.querySelector('#ulList').children;
-  const index = Array.from(getLists).indexOf(list);
-  ListContent[index].completed = completed;
-  localStorage.setItem('tasks', JSON.stringify(ListContent));
-};
 
 // sorting index values
 const sortIndex = () => {
@@ -113,7 +102,7 @@ const addtodo = (event) => {
   ListSection.appendChild(ListElement);
   const getCheckBoxes = document.querySelectorAll('.checkbox');
   const checkBoxIndex = getCheckBoxes.length - 1;
-  getCheckBoxes[checkBoxIndex].addEventListener('change', statusCheckBox);
+  getCheckBoxes[checkBoxIndex].addEventListener('change', (event) => statusCheckBox(event, ListContent));
   localStorage.setItem('tasks', JSON.stringify(ListContent));
   document.querySelector('.todo-input').value = null;
 };
@@ -147,7 +136,7 @@ const addingTodos = (task) => {
   ListSection.appendChild(ListElement);
   const getCheckBoxes = document.querySelectorAll('.checkbox');
   const checkBoxIndex = getCheckBoxes.length - 1;
-  getCheckBoxes[checkBoxIndex].addEventListener('change', statusCheckBox);
+  getCheckBoxes[checkBoxIndex].addEventListener('change', (event) => statusCheckBox(event, ListContent));
   if (task.completed === true) {
     getCheckBoxes[checkBoxIndex].click();
   }
