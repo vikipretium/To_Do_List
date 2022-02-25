@@ -108,10 +108,10 @@ svg {
   opacity: 0.5;
 }
 
-.disabled .todo-description {
+/* .disabled .todo-description {
   pointer-events: none;
-}
+} */
 
-.disabled .todo-menu {
+/* .disabled .todo-menu {
   pointer-events: none;
-}
+} */
