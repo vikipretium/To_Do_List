@@ -69,7 +69,6 @@ const todoEdit = (event) => {
   if (event.target.src === Image1) {
     event.target.src = Image2;
     event.target.parentNode.children[0].children[1].removeAttribute('disabled');
-    // document.querySelector(".todo-description").removeAttribute("disabled");
   } else {
     const lists = document.querySelector('#ulList').children;
     const indexList = Array.from(lists).indexOf(event.target.parentNode);

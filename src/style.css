@@ -107,11 +107,3 @@ svg {
 .disabled {
   opacity: 0.5;
 }
-
-/* .disabled .todo-description {
-  pointer-events: none;
-} */
-
-/* .disabled .todo-menu {
-  pointer-events: none;
-} */
