@@ -2,9 +2,13 @@
 
 # To Do List Webapp
 
-> A web app to create a To Do list online. This webapp is built with webpack. A local storage option is added with this project, so that a user can store data in this is web app. 
+> A web app to create a To Do list online. This webapp is built with webpack. A local storage option is added with this project, so that a user can store data in this is web app.
 
 ![screenshot](./src/asset/images/ss1.png)
+
+## Live Link
+
+Project's [Live Link](https://vikipretium.github.io/To_Do_List/)
 
 Additional description about the project and its features.
 
@@ -22,8 +26,9 @@ Additional description about the project and its features.
 #### Cloning the project
 
 ```
-git clone https://github.com/vikipretium/To_Do_List.git 
+git clone https://github.com/vikipretium/To_Do_List.git
 ```
+
 ## Usage
 
 To build the project run:
